@@ -1,9 +1,18 @@
 import UserAgent from 'user-agents';
+import NextCors from 'nextjs-cors';
 const { chromium } = require('playwright');
 
 const userAgent = new UserAgent();
 
 const handler = async (req, res) => {
+
+  await NextCors(req, res, {
+      // Options
+      methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+      origin: '*',
+      optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+   });
+     
   const { address } = req.query;
 
   const options = {
