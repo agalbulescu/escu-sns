@@ -1,23 +1,35 @@
+// import type { NextApiRequest, NextApiResponse } from 'next'
+import Cors from 'cors'
 import UserAgent from 'user-agents';
-import NextCors from 'nextjs-cors';
 const { chromium } = require('playwright');
-
 const userAgent = new UserAgent();
+const req = new NextApiRequest;
+const res = NextApiResponse;
+
+const cors = Cors({
+    methods: ['POST', 'GET', 'HEAD'],
+})
+
+function runMiddleware(req, res, fn) {
+    return new Promise((resolve, reject) => {
+      fn(req, res, (result) => {
+        if (result instanceof Error) {
+          return reject(result)
+        }
+        return resolve(result)
+      })
+    })
+}
 
 const handler = async (req, res) => {
 
-  await NextCors(req, res, {
-      // Options
-      methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-      origin: '*',
-      optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-   });
-     
-  const { address } = req.query;
+    await runMiddleware(req, res, cors)
 
-  const options = {
-    userAgent: userAgent.toString()
-  }
+    const { address } = req.query;
+
+    const options = {
+        userAgent: userAgent.toString()
+    }
 
   try {
 
