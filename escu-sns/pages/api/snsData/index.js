@@ -1,4 +1,3 @@
-// import type { NextApiRequest, NextApiResponse } from 'next'
 import Cors from 'cors'
 import UserAgent from 'user-agents';
 const { chromium } = require('playwright');
