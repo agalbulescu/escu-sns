@@ -34,7 +34,7 @@ const handler = async (req, res) => {
 
     const browser = await chromium.launch({
         headless: true,
-        executablePath: '/vercel/.cache/ms-playwright/chromium-1064/chrome-linux/'
+        executablePath: '/vercel/.cache/ms-playwright/chromium-1064/'
     })
 
     const page = await browser.newPage(options)
