@@ -2,8 +2,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm i @playwright/test@latest && npx playwright install chromium",
-    "start": "next start"
+    "build": "next build",
+    "start": "next start",
+    "postinstall": "npx playwright install"
   },
   "dependencies": {
     "cors": "^2.8.5",
