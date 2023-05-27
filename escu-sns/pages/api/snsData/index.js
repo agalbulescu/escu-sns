@@ -3,6 +3,9 @@ import UserAgent from 'user-agents';
 const { chromium } = require('playwright');
 const userAgent = new UserAgent();
 
+const basePath = process.cwd();
+console.log(basePath);
+
 const cors = Cors({
     methods: ['POST', 'GET', 'HEAD'],
 })
