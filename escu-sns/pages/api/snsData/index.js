@@ -1,7 +1,6 @@
 import Cors from 'cors'
 import UserAgent from 'user-agents';
 const { chromium } = require('playwright');
-const awsChromium = require('chrome-aws-lambda');
 const userAgent = new UserAgent();
 
 const basePath = process.cwd();
@@ -37,8 +36,7 @@ const handler = async (req, res) => {
 
     const browser = await chromium.launch({
         headless: true,
-        executablePath: awsChromium.executablePath
-        // executablePath: '/var/task/escu-sns/.cache/ms-playwright/chromium-1064/chrome-linux/chrome'
+        executablePath: '/var/.cache/ms-playwright/chromium-1064/chrome-linux/chrome'
     })
 
     const page = await browser.newPage(options)
