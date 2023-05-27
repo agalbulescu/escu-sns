@@ -27,7 +27,7 @@ export default function Home() {
           <a href="https://escu.design">escu-sns</a>
         </h1>
 
-        {/* <button onClick={getSolDomain2}>CLICK HERE</button> */}
+        <button onClick={getSolDomain2}>CLICK HERE</button>
       </main>
 
       <footer>
