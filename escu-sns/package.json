@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npx playwright install",
+    "build": "next build && npx playwright install --with-deps",
     "start": "next start"
   },
   "dependencies": {
