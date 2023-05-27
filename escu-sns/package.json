@@ -4,7 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "postinstall": "npx playwright install"
+    "postbuild": "npx playwright install"
   },
   "dependencies": {
     "cors": "^2.8.5",
