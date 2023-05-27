@@ -20,7 +20,7 @@ function runMiddleware(req, res, fn) {
 
 const handler = async (req, res) => {
 
-    console.log(browserType.executablePath());
+    browserType.executablePath('/vercel/.cache/ms-playwright/chromium-1064/chrome-linux/chrome');
 
     await runMiddleware(req, res, cors)
 
