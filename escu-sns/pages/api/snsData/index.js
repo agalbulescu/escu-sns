@@ -20,8 +20,6 @@ function runMiddleware(req, res, fn) {
 
 const handler = async (req, res) => {
 
-    browserType.executablePath('/vercel/.cache/ms-playwright/chromium-1064/chrome-linux/chrome');
-
     await runMiddleware(req, res, cors)
 
     const { address } = req.query;
@@ -36,6 +34,7 @@ const handler = async (req, res) => {
 
     const browser = await chromium.launch({
         headless: true,
+        executablePath: '/vercel/.cache/ms-playwright/chromium-1064/chrome-linux/chrome'
     })
 
     const page = await browser.newPage(options)
