@@ -3,8 +3,6 @@ import Cors from 'cors'
 import UserAgent from 'user-agents';
 const { chromium } = require('playwright');
 const userAgent = new UserAgent();
-const req = new NextApiRequest;
-const res = NextApiResponse;
 
 const cors = Cors({
     methods: ['POST', 'GET', 'HEAD'],
