@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "chrome-aws-lambda": "^10.1.0",
     "cors": "^2.8.5",
     "next": "latest",
     "playwright": "^1.34.3",
