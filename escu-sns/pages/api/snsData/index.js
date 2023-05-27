@@ -29,17 +29,15 @@ const handler = async (req, res) => {
     }
 
   try {
-
     console.log("STARTING SOLANA NAME SERVICE WORKER");
 
     const browser = await chromium.launch({
         headless: true,
-        executablePath: '.vercel/.cache/ms-playwright/chromium-1064/chrome-linux/chrome'
+        executablePath: '~/.cache/ms-playwright/chromium-1064/chrome-linux/chrome'
     })
 
     const page = await browser.newPage(options)
     page.setDefaultTimeout(60000);
-
     await page.setViewportSize({ width: 1200, height: 800 })
 
     // page.on('request', (request) => console.log('>>', request.method(), request.url()))
