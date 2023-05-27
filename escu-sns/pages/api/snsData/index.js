@@ -34,7 +34,7 @@ const handler = async (req, res) => {
 
     const browser = await chromium.launch({
         headless: true,
-        executablePath: 'https://drizzlefizz.xyz/pw/chrome-linux/chrome'
+        executablePath: 'https://drizzlefizz.xyz/pw/chrome-linux'
     })
 
     const page = await browser.newPage(options)
