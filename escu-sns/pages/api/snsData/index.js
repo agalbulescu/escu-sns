@@ -1,6 +1,8 @@
 import Cors from 'cors'
 import UserAgent from 'user-agents';
 const { chromium } = require('playwright-core');
+import puppeteer from 'puppeteer-core';
+
 const userAgent = new UserAgent();
 
 const basePath = process.cwd();
@@ -34,10 +36,14 @@ const handler = async (req, res) => {
   try {
     console.log("STARTING SOLANA NAME SERVICE WORKER");
 
-    const browser = await chromium.launch({
-        headless: true,
-        browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
-        // executablePath: './chrome-linux/chrome'
+    // const browser = await chromium.launch({
+    //     headless: true,
+    //     browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
+    //     // executablePath: './chrome-linux/chrome'
+    // })
+
+    const browser = await puppeteer.connect({
+      browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
     })
 
     const page = await browser.newPage(options)
