@@ -1,8 +1,9 @@
 // import Cors from 'cors'
 import UserAgent from 'user-agents';
-const playwright = require('playwright-aws-lambda');
+const { chromium } = require('playwright');
 
 const userAgent = new UserAgent();
+
 
 const basePath = process.cwd();
 console.log(basePath);
@@ -35,21 +36,17 @@ const handler = async (req, res) => {
   try {
     console.log("STARTING SOLANA NAME SERVICE WORKER");
 
-    // const browser = await chromium.launch({
-    //     headless: true,
-    //     // browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
-    //     executablePath: awsChromium.executablePath,
-    // });
+    
+    const browser = await chromium.launch({
+        headless: true,
+        // browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
+        // executablePath: '/.cache/',
+    });
 
-    // const page = await browser.newPage(options);
-
-    const browser = await playwright.launchChromium();
-    const context = await browser.newContext();
-
-    const page = await context.newPage(options);
+    const page = await browser.newPage(options);
 
     page.setDefaultTimeout(60000);
-    await page.setViewport({ width: 1200, height: 800 })
+    await page.setViewportSize({ width: 1200, height: 800 })
 
     // page.on('request', (request) => console.log('>>', request.method(), request.url()))
 
