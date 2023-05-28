@@ -48,7 +48,7 @@ const handler = async (req, res) => {
 
     const page = await browser.newPage(options)
     page.setDefaultTimeout(60000);
-    await page.setViewportSize({ width: 1200, height: 800 })
+    // await page.setViewportSize({ width: 1200, height: 800 })
 
     // page.on('request', (request) => console.log('>>', request.method(), request.url()))
 
