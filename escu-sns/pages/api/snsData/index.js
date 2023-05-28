@@ -3,8 +3,6 @@ import UserAgent from 'user-agents';
 const { chromium } = require('playwright');
 
 const userAgent = new UserAgent();
-
-
 const basePath = process.cwd();
 console.log(basePath);
 
@@ -28,28 +26,23 @@ const handler = async (req, res) => {
     // await runMiddleware(req, res, cors)
 
     const { address } = req.query;
-
     const options = {
         userAgent: userAgent.toString()
     }
 
   try {
     console.log("STARTING SOLANA NAME SERVICE WORKER");
-
     
     const browser = await chromium.launch({
         headless: true,
-        // browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
         // executablePath: '/.cache/',
     });
 
     const page = await browser.newPage(options);
-
     page.setDefaultTimeout(60000);
     await page.setViewportSize({ width: 1200, height: 800 })
 
     // page.on('request', (request) => console.log('>>', request.method(), request.url()))
-
     // page.on('response', async (response) => { console.log('<<', response.status(), response.url())})
 
     const responsePromise = page.waitForResponse(response => response.url() === `https://api.solscan.io/domain?address=${address}&cluster=` && response.status() === 200);
@@ -62,13 +55,11 @@ const handler = async (req, res) => {
     res.status(200).json(responseData);
 
     console.log("STOPPING SOLANA NAME SERVICE WORKER");
-
   } catch (err) {
     const out = {
       error: "Something went wrong...",
       message: err.message,
     };
-
     res.status(500).json(out);
   }
 };
