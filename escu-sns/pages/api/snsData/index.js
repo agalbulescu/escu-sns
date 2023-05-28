@@ -1,6 +1,6 @@
 import Cors from 'cors'
 import UserAgent from 'user-agents';
-const { chromium } = require('playwright');
+const { chromium } = require('playwright-core');
 const userAgent = new UserAgent();
 
 const basePath = process.cwd();
@@ -36,7 +36,8 @@ const handler = async (req, res) => {
 
     const browser = await chromium.launch({
         headless: true,
-        executablePath: '../../../../.cache/ms-playwright/chromium-1064/chrome-linux/chrome'
+        browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
+        // executablePath: './chrome-linux/chrome'
     })
 
     const page = await browser.newPage(options)
