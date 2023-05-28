@@ -1,32 +1,30 @@
-import Cors from 'cors'
+// import Cors from 'cors'
 import UserAgent from 'user-agents';
 const playwright = require('playwright-aws-lambda');
-// const { chromium } = require('playwright-core');
-// const awsChromium = require('chrome-aws-lambda');
 
 const userAgent = new UserAgent();
 
 const basePath = process.cwd();
 console.log(basePath);
 
-const cors = Cors({
-    methods: ['POST', 'GET', 'HEAD'],
-})
+// const cors = Cors({
+//     methods: ['POST', 'GET', 'HEAD'],
+// })
 
-function runMiddleware(req, res, fn) {
-    return new Promise((resolve, reject) => {
-      fn(req, res, (result) => {
-        if (result instanceof Error) {
-          return reject(result)
-        }
-        return resolve(result)
-      })
-    })
-}
+// function runMiddleware(req, res, fn) {
+//     return new Promise((resolve, reject) => {
+//       fn(req, res, (result) => {
+//         if (result instanceof Error) {
+//           return reject(result)
+//         }
+//         return resolve(result)
+//       })
+//     })
+// }
 
 const handler = async (req, res) => {
 
-    await runMiddleware(req, res, cors)
+    // await runMiddleware(req, res, cors)
 
     const { address } = req.query;
 
