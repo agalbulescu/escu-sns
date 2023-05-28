@@ -1,7 +1,9 @@
 import Cors from 'cors'
 import UserAgent from 'user-agents';
-const { chromium } = require('playwright-core');
 import puppeteer from 'puppeteer-core';
+import edgeChromium from 'chrome-aws-lambda'
+
+const { chromium } = require('playwright-core');
 
 const userAgent = new UserAgent();
 
@@ -42,8 +44,12 @@ const handler = async (req, res) => {
     //     // executablePath: './chrome-linux/chrome'
     // })
 
-    const browser = await puppeteer.connect({
-      browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BLESS_TOKEN}`,
+    const executablePath = await edgeChromium.executablePath
+  
+    const browser = await puppeteer.launch({
+      executablePath,
+      args: edgeChromium.args,
+      headless: true,
     })
 
     const page = await browser.newPage(options)
